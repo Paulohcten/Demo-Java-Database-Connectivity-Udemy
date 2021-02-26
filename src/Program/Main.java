@@ -18,8 +18,7 @@ public class Main {
 
         SellerDAO sellerDAO = DAO_Factory.createSellerDAO();
 
-        Department department = new Department(2,null);
-        List<Seller> list = sellerDAO.findByDepartment(department);
+        List<Seller> list = sellerDAO.findAll();
         for (Seller obj:list) {
             System.out.println(obj);
         }
