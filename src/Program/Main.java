@@ -15,11 +15,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         SellerDAO sellerDAO = DAO_Factory.createSellerDAO();
-        Seller seller =  sellerDAO.findById(11);
-        seller.setName("Luna White");
-        seller.setEmail("luna@gmail.com");
-        seller.setBaseSalary(2500.00);
 
-        sellerDAO.update(seller);
+        System.out.print("Delete by Id: ");
+        int delById = sc.nextInt();
+        sellerDAO.deleteById(delById);
+        System.out.println("Delete executed");
+
+        sc.close();
     }
 }
