@@ -54,6 +54,13 @@ public class Main {
                         departmentDAO.update(department);
                         break;
 
+                    case 3:
+                        System.out.print("Enter the department ID: ");
+                        int depIdForDel= sc.nextInt();
+                        departmentDAO.deleteById(depIdForDel);
+                        System.out.println("Department removed");
+                        break;
+
                     default:
                         System.out.println("ERROR! Invalid option");
                         break;

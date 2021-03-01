@@ -2,6 +2,7 @@ package Model.DataAccessObject_impl;
 
 import Db.DB;
 import Db.DbException;
+import Db.DbIntegrityException;
 import Model.DataAccessObject.DepartmentDAO;
 import Model.Entities.Department;
 
@@ -74,7 +75,21 @@ public class DepartmentDAO_JDBC implements DepartmentDAO {
 
     @Override
     public void deleteById(Integer id) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement(
+                    "DELETE FROM department WHERE Id = ?");
 
+            st.setInt(1, id);
+
+            st.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new DbIntegrityException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
