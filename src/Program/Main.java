@@ -22,7 +22,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        DepartmentDAO departmentDao = DAO_Factory.createDepartmentDAO();
+        DepartmentDAO departmentDAO = DAO_Factory.createDepartmentDAO();
         SellerDAO sellerDAO = DAO_Factory.createSellerDAO();
 
         System.out.println("Database connectivity ");
@@ -36,11 +36,24 @@ public class Main {
                 switch (functionSelect) {
                     case 1:
                         System.out.print("New department name: ");
-                        String depName = sc.nextLine();
-                        Department newDepartment = new Department(null, depName);
-                        departmentDao.insert(newDepartment);
+                        sc.nextLine();
+                        String newDepName = sc.nextLine();
+                        Department newDepartment = new Department(null, newDepName);
+                        departmentDAO.insert(newDepartment);
                         System.out.println("Inserted! New id: " + newDepartment.getId());
                         break;
+
+                    case 2:
+                        System.out.print("Enter the seller ID: ");
+                        int depIdForUpdate= sc.nextInt();
+                        Department department = new Department(depIdForUpdate,null);
+                        System.out.print("Update department name: ");
+                        sc.nextLine();
+                        String upDepName = sc.nextLine();
+                        department.setName(upDepName);
+                        departmentDAO.update(department);
+                        break;
+
                     default:
                         System.out.println("ERROR! Invalid option");
                         break;
