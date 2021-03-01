@@ -31,7 +31,7 @@ public class Main {
         switch (tableSelect) {
             case 1:
                 System.out.println("Department: Selected");
-                System.out.println("Enter the desired function:\n1-Insert\n2-Update\n3-Delete by ID\n4-Find by ID\n5-Find by Department\n6-Find All");
+                System.out.println("Enter the desired function:\n1-Insert\n2-Update\n3-Delete by ID\n4-Find by ID\n5-Find All");
                 int functionSelect = sc.nextInt();
                 switch (functionSelect) {
                     case 1:
@@ -59,6 +59,20 @@ public class Main {
                         int depIdForDel= sc.nextInt();
                         departmentDAO.deleteById(depIdForDel);
                         System.out.println("Department removed");
+                        break;
+
+                    case 4:
+                        System.out.print("Enter the department ID: ");
+                        int depIdSearch= sc.nextInt();
+                        Department depSearch = departmentDAO.findById(depIdSearch);
+                        System.out.println(depSearch);
+                        break;
+
+                    case 5:
+                        List<Department> listAllDepartments = departmentDAO.findAll();
+                        for (Department depAllSearch:listAllDepartments) {
+                            System.out.println(depAllSearch);
+                        }
                         break;
 
                     default:
